@@ -10,6 +10,8 @@ let calcStorage = "";
 let operator = "";
 let num1 = 0;
 let num2 = 0;
+let currentOperator = "";
+let output = "";
 
 for (let i = 0; i < numInput.length; i++) {
   numInput[i].addEventListener("click", function () {
@@ -34,6 +36,13 @@ clearButton.addEventListener("click", function () {
 });
 
 add.addEventListener("click", function () {
+  if (currentOperator = ""){
+    currentOperator = "+";
+  }
+  else {
+    currentOperator = "";
+    currentOperator = "+";
+  }
   if (display.value == ("")) {
     display.value += ("");
   }
@@ -43,10 +52,48 @@ add.addEventListener("click", function () {
   if (num1 == 0){
   num1 = calcStorage;
   calcStorage = "";
-  console.log(num1);
-  console.log(calcStorage);
   }
 
+});
+
+subtract.addEventListener("click", function () {
+  if (currentOperator = ""){
+    currentOperator = "-";
+  }
+  else {
+    currentOperator = "";
+    currentOperator = "-";
+  }
+  if (display.value == ("")) {
+    display.value += ("");
+  }
+  else {
+    display.value += this.textContent;
+  }
+  if (num1 == 0){
+  num1 = calcStorage;
+  calcStorage = "";
+  }
+});
+
+divide.addEventListener("click", function () {
+  if (currentOperator = ""){
+    currentOperator = "/";
+  }
+  else {
+    currentOperator = "";
+    currentOperator = "/";
+  }
+  if (display.value == ("")) {
+    display.value += ("");
+  }
+  else {
+    display.value += this.textContent;
+  }
+  if (num1 == 0){
+  num1 = calcStorage;
+  calcStorage = "";
+  }
 });
 
 equalsButton.addEventListener("click", function(){
@@ -54,11 +101,35 @@ equalsButton.addEventListener("click", function(){
     display.value +=("");
   }
   else {
-    num2 = calcStorage;
-    calcStorage = "";
+    switch(currentOperator){
+      case "+":
+        output = addition(parseFloat(num1), parseFloat(calcStorage));
+        display.value = output;
+        break;
 
-    display.value = (parseFloat(num1)+ parseFloat(num2));
+      case "-":
+        output = subtraction(parseFloat(num1), parseFloat(calcStorage));
+        display.value = output;
+        break;
+      
+      case "/":
+        output = division(parseFloat(num1), parseFloat(calcStorage));
+        display.value = output;
+        break;
+    }
   }
 });
+
+function addition(x, y){
+  return x + y;
+}
+function subtraction(x, y){
+  return x - y;
+}
+function division(x, y){
+  return x / y;
+}
+
+
 
 
